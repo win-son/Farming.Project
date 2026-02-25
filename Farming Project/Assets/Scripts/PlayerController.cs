@@ -20,6 +20,15 @@ public class PlayerController : MonoBehaviour
     {
         theRB.linearVelocity = moveInput.action.ReadValue<Vector2>().normalized * moveSpeed;
 
+        if(theRB.linearVelocity.x < 0f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else if(theRB.linearVelocityX >0f)
+        {
+            transform.localScale = Vector3.one;
+        }
+
         animator.SetFloat("speed", theRB.linearVelocity.magnitude);
     }
 }
