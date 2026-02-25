@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D theRB;
     public float moveSpeed;
+    public Animator animator;
     
     public InputActionReference moveInput;
     
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        theRB.linearVelocity = moveInput.action.ReadValue<Vector2>() * moveSpeed;
+        theRB.linearVelocity = moveInput.action.ReadValue<Vector2>().normalized * moveSpeed;
+
+        animator.SetFloat("speed", theRB.linearVelocity.magnitude);
     }
 }
